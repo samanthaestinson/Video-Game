@@ -82,8 +82,8 @@ class Player(pygame.sprite.Sprite):
         #updating
         self.update()
 
-    #creator of player  
-    def spawn(self, x, y):
+   #creator of player  
+   def spawn(self, x, y):
         #changing the co-ordinates so that they are in the center of the object--player
         self.x = x-self.rect.width//2
         self.y = y-self.rect.height//2
@@ -94,71 +94,71 @@ class Player(pygame.sprite.Sprite):
         #updating
         self.update()
     
-    def setImage(self, newImage):
+   def setImage(self, newImage):
         self.image = pygame.image.load(newImage)
         self.rect = self.image.get_rect()
     
-    #draws the player
+   #draws the player
     def draw(self, surface):
         #rectangle image on the screen
         surface.blit(self.image, self.rect)
 
-    #new dimensions
-    #creates and updates the new dimensions for the image of player  
+   #new dimensions
+   #creates and updates the new dimensions for the image of player  
     def update(self):
         self.rect = pygame.Rect(self.x,self.y,self.rect.width,self.rect.height)
 
-    #makes the player run
+   #makes the player run
     def run(self):
         self.x=self.x+self.vx
         self.update()
         
-    #makes the player stop
+   #makes the player stop
     def stop(self):
         self.vx=0
     
-    #makes player fall
+   #makes player fall
     def fall(self):
         self.y=self.y+self.vy
         self.update()
 
-    #allows to send how much you want to move, steps to move
+   #allows to send how much you want to move, steps to move
     #the moving motions after a button is clicked
     ##the motion of the player horizontally
     def nudge(self, horizontal_kick):
         self.vx=horizontal_kick
         
-    #lets the player jump
+   #lets the player jump
     def jump(self, vertical_kick):
         self.vy=vertical_kick
     
-    #always accellerate
+   #always accellerate
     def accellerate(self, gravity):
         self.vy=self.vy + gravity
     
-    #have we reached platform
+   #have we reached platform
     def settle_on(self, level):
         self.y=level-self.rect.height
         self.vy=0
         self.update()
         
-    #if i am on a surface true or false
+   #if i am on a surface true or false
     def settled_on(self, level):
         return self.y + self.rect.height == level and self.vy == 0
         #returning 2 variables
     
-    #values above/below
+   #values above/below
     def above(self, level):
         return self.y+self.rect.height<=level
 
-    def below(self, level):
+   def below(self, level):
         return self.y+self.rect.height>level
 
-    #Check dimensions of the next rectangle, see what we have reached
+   #Check dimensions of the next rectangle, see what we have reached
     def next_rect(self):
         return pygame.Rect(self.x+self.vx, self.y+self.vy, self.rect.width, self.rect.height)
     
-    #kills the player when they collide with the enemy
+   #kills the player when they collide with the enemy
     def kill(self):
         if lives>1:
             self.x=WIDTH/2
@@ -168,12 +168,12 @@ class Player(pygame.sprite.Sprite):
             self.y=800
         self.update
     
-    #boundries
+   #boundries
     #keeps the player inside the screen
     def bumpF(self):
         player.x=player.x+10
     
-    def bumpB(self):
+   def bumpB(self):
         player.x=player.x-10
         
 #-----------------------------------------------------------------------------------------------------------------------
@@ -189,19 +189,19 @@ class Platform(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.update()
     
-    #spawns the platforms
-    def spawn(self, x, y):
+   #spawns the platforms
+   def spawn(self, x, y):
         self.x = x-self.rect.width/8
         self.y = y-self.rect.height/2
         self.rect = pygame.Rect(self.x, self.y, self.rect.width, self.rect.height)
         self.visible = True
         self.update()
 
-    #draws the platforms
+   #draws the platforms
     def draw(self, surface):
         surface.blit(self.image, self.rect)
         
-    #updates the platforms
+   #updates the platforms
     def update(self):
         self.rect = pygame.Rect(self.x,self.y,self.rect.width,self.rect.height)
 
@@ -218,26 +218,26 @@ class Treasure(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.update()
     
-    #spawns the treasure
-    def spawn(self, x, y):
+   #spawns the treasure
+   def spawn(self, x, y):
         self.x = x-self.rect.width/2
         self.y = y-self.rect.height/2
         self.rect = pygame.Rect(self.x, self.y, self.rect.width, self.rect.height)
         self.visible = True
         self.update()
 
-    #draws the treasure
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
+  #draws the treasure
+  def draw(self, surface):
+       surface.blit(self.image, self.rect)
     
-    #resets the position of the treasure so they are off screen
-    def reset_position(self):
+  #resets the position of the treasure so they are off screen
+  def reset_position(self):
         self.x=800
         self.y=800
     
-    #updates the chest
-    def update(self):
-        self.rect = pygame.Rect(self.x,self.y,self.rect.width,self.rect.height)
+  #updates the chest
+  def update(self):
+       self.rect = pygame.Rect(self.x,self.y,self.rect.width,self.rect.height)
 
 #-----------------------------------------------------------------------------------------------------------------------
 #chest class
@@ -281,7 +281,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.update()
     
-    #spawns the enemy
+   #spawns the enemy
     def spawn(self, x, y):
         self.x = x-self.rect.width/2
         self.y = y-self.rect.height/2
@@ -289,11 +289,11 @@ class Enemy(pygame.sprite.Sprite):
         self.visible = True
         self.update()
     
-    #draws the enemy
+   #draws the enemy
     def draw(self, surface):
         surface.blit(self.image, self.rect)
     
-    #updates the enemy  
+   #updates the enemy  
     def update(self):
         self.rect = pygame.Rect(self.x,self.y,self.rect.width,self.rect.height)
     
@@ -360,7 +360,7 @@ def redraw_screen():
         titleImage= pygame.image.load(title)
         screen.blit(titleImage, (0,0))
     
-    if count==1:
+   if count==1:
         cover="cover.png"
         coverImage= pygame.image.load(cover)
         screen.blit(coverImage, (0,0))
@@ -532,14 +532,14 @@ while inPlay:
     pygame.event.get()
     keys = pygame.key.get_pressed()     
     
-    #looks at if the escape key is pressed
+   #looks at if the escape key is pressed
     if keys[pygame.K_ESCAPE]:
         inPlay = False
         
-    if keys[pygame.K_RETURN]:
+   if keys[pygame.K_RETURN]:
         count=count+1
     
-    #the up button is pressed
+   #the up button is pressed
     if keys[pygame.K_UP] and player.settled_on(level)==True: #boolean
         #defines the image of the player based on its movement
         player.setImage("up.png")
@@ -547,7 +547,7 @@ while inPlay:
         #updates the player
         player.update()
         
-    #the right button is pressed
+   #the right button is pressed
     elif keys[pygame.K_RIGHT]:
         #defines the image of the player based on its movement
         player.setImage("right.png")
@@ -555,7 +555,7 @@ while inPlay:
         #updates the player
         player.update()
 
-    #the left button is pressed
+   #the left button is pressed
     elif keys[pygame.K_LEFT]:
         #defines the image of the player based on its movement
         player.setImage("left.png")
@@ -563,7 +563,7 @@ while inPlay:
         #updates the player
         player.update()
     
-    #nothing is pressed  
+   #nothing is pressed  
     else:
         player.stop()
         #defines the image of the player based on its movement
@@ -571,49 +571,49 @@ while inPlay:
         #updates the player
         player.update()
     
-    #if the game hasnt started yet, keep the enemy at rest
+   #if the game hasnt started yet, keep the enemy at rest
     #if count<=1:
         #enemy.stop()
     
-    #if the game has started, let the enemy move
+   #if the game has started, let the enemy move
     if count>1:
-        if gamelevel==0:
+       if gamelevel==0:
             platformX, platformY,enemyx,enemyy=levelOne()
-        
+            
         if gamelevel==1:
             platformX, platformY,enemyx,enemyy=levelTwo()    
         
-        #starts the movement of the enemy
+       #starts the movement of the enemy
         enemy.move()
         enemy.movement()
         #updates the movement
         enemy.update()
 
-    #makes the player move
+   #makes the player move
     #horizontal motion
     player.run()
     #vertical motion
     player.accellerate(GRAVITY)
     
-    #updates the diamonds
+   #updates the diamonds
     treasureGroup.update()
 
-    #checks to see if the player is above or has collided with platform
+   #checks to see if the player is above or has collided with platform
     for platform in platforms:
         if player.above(platform.y) and player.next_rect().colliderect(platform):
             level=platform.y
             player.settle_on(level)
     
-    #allows the player to fall
+   #allows the player to fall
     player.fall()
     
-    #checks if the player is on the ground level
+   #checks if the player is on the ground level
     if player.below(GROUND):
         level=GROUND
         #if so, settle
         player.settle_on(level)
     
-    #checks to see if the player has collided with the enemy
+   #checks to see if the player has collided with the enemy
     if player.next_rect().colliderect(enemy):
         #if its collided, the player is killed
         player.kill()
@@ -622,10 +622,10 @@ while inPlay:
         #lives print statement cost
         print "\n\nYou lost one life! \nlives:",lives
         
-    #removes the treasure if the player has hit it
+   #removes the treasure if the player has hit it
     treasure_hit = pygame.sprite.spritecollide(player, treasureGroup, True)
  
-    #checks the collisions of the diamonds
+   #checks the collisions of the diamonds
     for treasure in treasure_hit:
         #keeps the score of the diamonds
         score += 1
@@ -634,18 +634,18 @@ while inPlay:
         #resets the treasures position once collected
         treasure.reset_position()
     
-    #checks to see if the player has collided with the treasure chest and that there is 11 diamonds collected
+   #checks to see if the player has collided with the treasure chest and that there is 11 diamonds collected
     if player.next_rect().colliderect(chest) and score>10:
         gameLevel=gameLevel+1
     
-    #if there are no lives left, the game ends 
+   #if there are no lives left, the game ends 
     if lives<1:
         #once inplay is false, the program ends
         inPlay=False
         #print statement
         print "\n\nGame Over!\nSorry", name,", YOU LOST!\n\n"
 
-    #boundries horizontal
+   #boundries horizontal
     if player.x>=WIDTH-25:
         player.bumpB()
     if player.x<=-5:
@@ -654,7 +654,7 @@ while inPlay:
     
 
 
-    #redraws the screen
+   #redraws the screen
     redraw_screen()
 #-----------------------------------------------------------------------------------------------------------------------
 #quits the program
